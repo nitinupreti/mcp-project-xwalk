@@ -1,3 +1,4 @@
+/* Hero container styling - full width */
 .hero-container .hero-wrapper {
   max-width: unset;
   padding: 0;
@@ -5,33 +6,168 @@
 
 .hero {
   position: relative;
-  padding: 40px 24px;
-  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px;
+  padding: 0;
+  overflow: hidden;
 }
 
-.hero h1 {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  color: var(--background-color);
-}
-
-.hero picture {
+/* Hero image background */
+.hero-image {
   position: absolute;
-  z-index: -1;
   inset: 0;
-  object-fit: cover;
-  box-sizing: border-box;
+  z-index: 0;
 }
 
-.hero img {
-  object-fit: cover;
+.hero-image picture {
+  display: block;
   width: 100%;
   height: 100%;
 }
 
-@media (width >= 900px) {
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Hero content overlay */
+.hero-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+  padding: 80px 24px;
+  text-align: center;
+  color: white;
+}
+
+/* Add dark overlay for better text readability */
+.hero-content::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 40%),
+    rgb(0 0 0 / 60%)
+  );
+  z-index: -1;
+  margin: -80px -24px;
+}
+
+/* Hero text wrapper */
+.hero-text {
+  margin-bottom: 32px;
+}
+
+.hero-content h1,
+.hero-content h2,
+.hero-content h3 {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 24px;
+  color: white;
+  text-shadow: 0 2px 8px rgb(0 0 0 / 30%);
+}
+
+.hero-content p {
+  font-size: 20px;
+  line-height: 1.6;
+  margin: 0 0 16px;
+  color: white;
+  text-shadow: 0 1px 4px rgb(0 0 0 / 30%);
+}
+
+/* Button styling */
+.hero-content .button-container {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+.hero-content .button-container .button {
+  padding: 12px 32px;
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.hero-content .button-container .button.primary {
+  background-color: var(--link-color, #0066cc);
+  color: white;
+  border: 2px solid var(--link-color, #0066cc);
+}
+
+.hero-content .button-container .button.primary:hover {
+  background-color: var(--link-hover-color, #0052a3);
+  border-color: var(--link-hover-color, #0052a3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 30%);
+}
+
+.hero-content .button-container .button:not(.primary) {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.hero-content .button-container .button:not(.primary):hover {
+  background-color: white;
+  color: var(--text-color, #000);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 30%);
+}
+
+/* Tablet and desktop */
+@media (width >= 768px) {
   .hero {
-    padding: 40px 32px;
+    min-height: 600px;
+  }
+
+  .hero-content {
+    padding: 120px 32px;
+  }
+
+  .hero-content::before {
+    margin: -120px -32px;
+  }
+
+  .hero-content h1,
+  .hero-content h2,
+  .hero-content h3 {
+    font-size: 64px;
+  }
+
+  .hero-content p {
+    font-size: 22px;
+  }
+}
+
+@media (width >= 1200px) {
+  .hero {
+    min-height: 700px;
+  }
+
+  .hero-content h1,
+  .hero-content h2,
+  .hero-content h3 {
+    font-size: 72px;
+  }
+
+  .hero-content p {
+    font-size: 24px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
